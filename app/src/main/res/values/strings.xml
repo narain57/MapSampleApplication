@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MapSampleApplication</string>
+    <string name="location_permission">Please provide Location permisssion to proceed</string>
+    <string name="current_location">Current Location :</string>
+    <string name="vehicleText">Hey! %1$s vehicle(%2$s) currently located at %3$s</string>
+    <string name="request_dialog">You requested for %1$s Vehicle (%2$s).Do you want to give a request to the selected vehicle?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="vehicle_request">Vehicle Request</string>
+    <string name="request_raised">Your request for the vehicle has been sent successfully.</string>
+</resources>
