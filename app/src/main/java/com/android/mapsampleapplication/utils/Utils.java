@@ -47,7 +47,7 @@ public class Utils {
                 mDialog.dismiss();
 
             final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context,
-                    android.R.style.Theme_DeviceDefault_Dialog_Alert);
+                    android.R.style.Theme_DeviceDefault_Light_Dialog_Alert);
 
             alertDialog.setMessage(message);
             alertDialog.setTitle(title);
