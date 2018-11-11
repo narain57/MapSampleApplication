@@ -56,8 +56,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyItem) {
             Vehicle dataItem = getItem(position);
-            List<Address> addressDetails = Utils.getPlaceDetails(context,Double.valueOf(dataItem.getCoordinate().getLatitude()),Double.valueOf(dataItem.getCoordinate().getLatitude()));
-            String text = String.format(context.getString(R.string.vehicleText), dataItem.getType(), dataItem.getId(), addressDetails.get(0).getLocality()+","+addressDetails.get(0).getCountryName());
+            List<Address> addressDetails = Utils.getPlaceDetails(context,Double.valueOf(dataItem.getCoordinate().getLatitude()),Double.valueOf(dataItem.getCoordinate().getLongitude()));
+            String text = String.format(context.getString(R.string.vehicleText), dataItem.getType(), dataItem.getId(), addressDetails.get(0).getAddressLine(0));
 
             ((MyItem) holder).mCurrentView.setText(text);
             ((MyItem) holder).mPosition = position;

@@ -45,6 +45,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -290,7 +291,8 @@ public class MapFragment extends Fragment implements MainView,
     @Override
     public void onItemClicked(int position) {
         mSlidingUpPanelLayout.collapsePane();
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.fromLatLngZoom(new LatLng(Double.parseDouble(vehicleList.get(position-1).getCoordinate().getLatitude()),Double.parseDouble(vehicleList.get(position-1).getCoordinate().getLongitude())),11.0f)));
+        if(position > 0)
+            mMap.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.fromLatLngZoom(new LatLng(Double.parseDouble(vehicleList.get(position-1).getCoordinate().getLatitude()),Double.parseDouble(vehicleList.get(position-1).getCoordinate().getLongitude())),11.0f)));
     }
 
     @Override
@@ -321,7 +323,7 @@ public class MapFragment extends Fragment implements MainView,
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Utils.showAlertDialogWithOkAndCancelButton(getActivity(),getString(R.string.vehicle_request), String.format(getString(R.string.request_dialog),marker.getTitle(),marker.getSnippet()), getString(R.string.ok), getString(R.string.cancel), new DialogInterface.OnClickListener() {
+        Utils.showAlertDialogWithOkAndCancelButton(getActivity(),getString(R.string.vehicle_request), String.format(getString(R.string.request_dialog),marker.getSnippet(),marker.getTitle()), getString(R.string.ok), getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 showSnackBar();
