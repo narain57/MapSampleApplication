@@ -126,24 +126,10 @@ public class MapFragment extends Fragment implements MainView,
         presenter.fetchVehicleDetails();
     }
 
-    @SuppressLint("MissingPermission")
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
-                if (Build.VERSION.SDK_INT >= 23) {
-                    if (Utils.isLocationAllowed(getActivity())) {
-                        mMap.setMyLocationEnabled(false);
-                    } else {
-                        Utils.requestStoragePermission(getActivity(), this);
-                    }
-                } else {
-                    if (Utils.isLocationAllowed(getActivity())) {
-                        mMap.setMyLocationEnabled(false);
-                    } else {
-                        Toast.makeText(getActivity(), getString(R.string.location_permission), Toast.LENGTH_LONG).show();
-                    }
-                }
                 mMap.getUiSettings().setCompassEnabled(false);
                 mMap.getUiSettings().setZoomControlsEnabled(false);
                 mMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -300,26 +286,6 @@ public class MapFragment extends Fragment implements MainView,
         mMap = googleMap;
         setUpMapIfNeeded();
     }
-
-    @SuppressLint("MissingPermission")
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //Checking the request code of our request
-        if (requestCode == Utils.LOCATION_PERMISSION_CODE) {
-            //If permission is granted
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                mMap.setMyLocationEnabled(false);
-            } else {
-                // user rejected the permission
-                boolean showRationale = shouldShowRequestPermissionRationale(permissions[0]);
-                if (!showRationale) {
-                    // CHECKED "never ask again"
-                    Toast.makeText(getActivity(), getString(R.string.location_permission), Toast.LENGTH_LONG).show();
-                }
-            }
-        }
-    }//end of onRequestPermissionsResult
 
     @Override
     public boolean onMarkerClick(Marker marker) {

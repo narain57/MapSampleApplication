@@ -86,21 +86,4 @@ public class Utils {
         fragmentTransaction.add(id, fragment,"map");
         fragmentTransaction.commit();
     }
-    public static boolean isLocationAllowed(Activity activity) {
-        //Getting the permission status
-        int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION);
-        //If permission is granted returning true
-        if (result == PackageManager.PERMISSION_GRANTED)
-            return true;
-        //If permission is not granted returning false
-        return false;
-    }
-
-    //Requesting permission
-    public static void requestStoragePermission(Activity activity, Fragment fragment) {
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-        }
-        fragment.requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_PERMISSION_CODE);
-    }
 }
